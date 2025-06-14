@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Open Graph (for Facebook, Discord, Telegram) -->
+  <meta property="og:title" content="SpellForged Matrix Sponge" />
+  <meta property="og:description" content="A meme coin forged from magic, Matrix code, and sponge power." />
+  <meta property="og:image" content="images/preview.png" />
+  <meta property="og:url" content="https://spellforgedmatrixsponge.com" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SpellForged Matrix Sponge" />
+  <meta name="twitter:description" content="Meme magic meets the Matrix. Join the $SPMX movement." />
+  <meta name="twitter:image" content="images/preview.png" />
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SpellForged Matrix Sponge</title>
+  <link rel="icon" type="image/png" href="images/favicon.gif" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <h1 class="logo">SPELLFORGED MATRIX SPONGE</h1>
+      <p class="subtitle">The blockchain has been soaked.</p>
+      <div class="wallet">0xSponge...W1zrd</div>
+      <div class="buttons">
+        <a href="https://x.com/TheGlitchWiz" class="btn" target="_blank">X</a>
+        <a href="https://t.me/spellforgedmatrixsponge" class="btn" target="_blank">Telegram</a>
+        <a href="../public/whitepaper.pdf" class="btn" target="_blank">Whitepaper</a>
+      </div>
+      <img src="images/wizard_sponge.png" alt="Wizard Sponge" class="main-image" />
+    </header>
+
+    <!-- ✅ New Section: Image-to-Video Generator -->
+    <section class="section">
+      <h2>🎥 Create Your Sponge Video</h2>
+      <p>Upload a few images and cast your video spell.</p>
+      <input type="file" id="imageUpload" multiple accept="image/*" />
+      <br><br>
+      <button onclick="generateVideo()">Generate Video</button>
+      <div id="statusMessage" style="margin-top: 1rem;"></div>
+      <video id="videoPreview" controls style="display:none; margin-top: 1rem; width: 100%;"></video>
+    </section>
+
+    <section class="section">
+      <h2>About</h2>
+      <p>
+        SpellForged Matrix Sponge meme project conjured from magic, and matrix code. Designed to entertain, empower, and absorb everything in its path.
+      </p>
+      <p>
+        A blend of storytelling, spell-casting economics, and mystical community vibes into a liquid digital relic. Built for degenerates, conjured by chaos. Join the spellstorm.
+      </p>
+      <p>
+        <strong>Project Name:</strong> SpellForged Matrix Sponge<br>
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>The Legend of Spongeus</h2>
+      <p>
+        It began in a soaked trench of cryptoland, where sponges once absorbed TVL like water — until one absorbed *too much*.
+      </p>
+      <p>
+        His name was Spongeus. Unlike the others, he could see the Matrix. Lines of green. Glitches of power. Every morning he trained — absorbing rugpulls, dodging gas fees, and practicing spell loops.
+      </p>
+      <p>
+        They called him crazy. They laughed. But Spongeus just whispered, “I cast Absorbus Maximus.”
+      </p>
+    
+    </section>
+
+    <section class="section">
+      <h2>Ascension</h2>
+      <p>
+        One cooked night, with a wand built from broken tokens and burned contracts, he cast the spell that launched him beyond the blockchain. Now, they say he *is* the blockchain.
+      </p>
+      <p>
+        He didn’t just soak liquidity — he became the flow. The crust. The chain. The sponge.
+      </p>
+      <p>
+        Thus, Spongeus was born. A memetic artifact to honor the wizard sponge who saw the code and became the glitch.
+      </p>
+    </section>
+
+    <section class="section roadmap">
+      <h2>📖 The Scroll of Intent</h2>
+      <img src="images/meme_roadmap.png" alt="Meme Roadmap Scroll" class="wide-image" />
+    </section>
+
+    <section class="section disclaimer">
+      <p>
+        Spongeus is a meme project. It is not a financial instrument.... unless the community casts such spell sourcery!
+        Should the community cast a 1,000 followers then Spongeus will summon the coin and bless the first following with a special Airdrop.  
+        This is a community-powered joke chain thing.
+      </p>
+      <p><strong>Chain:</strong> Solana<br>
+      <strong>Category:</strong> Meme Project / Community vibes<br>
+      <strong>Date:</strong> June 2025</p>
+    </section>
+  </main>
+
+  <div class="floating-cta" onclick="openModal()">CONNECT WALLET</div>
+
+  <div id="spellModal" class="modal">
+    <div class="modal-content">
+      <h2>🧙‍♂️ Spell Portal Opening Soon</h2>
+      <p>Wallet connection will be enabled at launch.</p>
+      <button onclick="closeModal()">Close</button>
+    </div>
+  </div>
+
+  <!-- 👇 Script for Wallet Modal & Video Generator -->
+  <script>
+    function openModal() {
+      document.getElementById('spellModal').style.display = 'block';
+    }
+    function closeModal() {
+      document.getElementById('spellModal').style.display = 'none';
+    }
+
+    async function generateVideo() {
+      const files = document.getElementById('imageUpload').files;
+      if (files.length === 0) return alert('Upload at least one image.');
+
+      const formData = new FormData();
+      for (let file of files) formData.append('images', file);
+
+      document.getElementById('statusMessage').innerText = 'Uploading and casting...';
+
+      try {
+        const res = await fetch('https://main-production-YOUR_ID.up.railway.app/api/generate', {
+          method: 'POST',
+          body: formData
+        });
+
+        const data = await res.json();
+        if (data.videoUrl) {
+          document.getElementById('statusMessage').innerText = '✨ Video Ready!';
+          const video = document.getElementById('videoPreview');
+          video.src = data.videoUrl;
+          video.style.display = 'block';
+        } else {
+          throw new Error(data.error || 'Unknown error.');
+        }
+      } catch (e) {
+        document.getElementById('statusMessage').innerText = '❌ Failed: ' + e.message;
+      }
+    }
+  </script>
+</body>
+</html>
