@@ -6,7 +6,7 @@ form.onsubmit = async (e) => {
   const formData = new FormData(form);
 
   try {
-    const res = await fetch('distinguished-enthusiasm-production.up.railway.app', {
+    const res = await fetch('https://distinguished-enthusiasm-production.up.railway.app/api/generate', {
       method: 'POST',
       body: formData
     });
