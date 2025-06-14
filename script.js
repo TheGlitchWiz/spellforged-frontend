@@ -14,7 +14,7 @@ form.onsubmit = async (e) => {
     const data = await res.json();
 
     if (res.ok && data.videoUrl) {
-      preview.src = data.videoUrl;
+      preview.src = "https://distinguished-enthusiasm-production.up.railway.app" + data.videoUrl;
       preview.style.display = "block";
     } else {
       alert("Error: " + (data.error || "Unknown error"));
